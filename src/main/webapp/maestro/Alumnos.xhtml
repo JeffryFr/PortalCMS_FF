@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Lista Alumnos</title>
+    <h:outputStylesheet name="img/styleMaestro.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <f:event type="preRenderView" listener="#{maestroBean.MiSalon(sessionScope.usuario.codigoMaestro)}" />
+</h:head>
+
+<h:body>
+    <ui:include src="Menu.xhtml" />
+
+    <div class="container mt-4">
+        <h2 class="text-center titulo-tabla">Lista de Alumnos</h2>
+        <h3 class="text-left">
+            Grado:
+            <h:outputText value="#{maestroBean.salon.grado}" />
+            "<h:outputText value="#{maestroBean.salon.seccion}" />"
+        </h3>
+        <div class="table-responsive">
+            <h:form>
+                <h:dataTable styleClass="custom-table" value="#{maestroBean.getListaAlumnos(maestroBean.salon.codigoSalon)}"
+                             var="est" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{est.codigoAlumno}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{est.nombres}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Apellido"/>
+                        </f:facet>
+                        <h:outputText value="#{est.apellidos}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Telefono"/>
+                        </f:facet>
+                        <h:outputText value="#{est.telefono}"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </div>
+    </div>
+    <c:choose>
+        <c:when test="#{not empty sessionScope.rol}">
+            <c:set var="rol" value="#{sessionScope.rol}" />
+            <c:choose>
+                <c:when test="#{rol eq 'Director'}">
+                    <h:outputScript>
+                        window.location.href = '../director/interfazDirector.xhtml';
+                    </h:outputScript>
+                </c:when>
+                <c:when test="#{rol eq 'Alumno'}">
+                    <h:outputScript>
+                        window.location.href = '../alumno/interfazAlumno.xhtml';
+                    </h:outputScript>
+                </c:when>
+            </c:choose>
+        </c:when>
+        <c:otherwise>
+            <h:outputScript>
+                window.location.href = '../login.xhtml';
+            </h:outputScript>
+        </c:otherwise>
+    </c:choose>
+</h:body>
+
+</html>

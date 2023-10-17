@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Director</title>
+    <h:outputStylesheet name="img/styleMaestro.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+    <ui:include src="Menu.xhtml" />
+
+    <div class="container-fluid">
+        <div class="modulo">
+            <h:graphicImage library="img" name="f3.png" alt="Imagen Módulo 1" class="imagen-modulo"/>
+            <div class="contenido-modulo">
+                <h5 class="titulo-modulo">Alumnos</h5>
+                <p class="texto-modulo">Encuentra la información de todos los alumnos aquí</p>
+            </div>
+        </div>
+        <div class="modulo">
+            <h:graphicImage library="img" name="f4.png" alt="Imagen Módulo 2" class="imagen-modulo"/>
+            <div class="contenido-modulo">
+                <h5 class="titulo-modulo">Maestros</h5>
+                <p class="texto-modulo">Encuentra la información de todos los maestros</p>
+            </div>
+        </div>
+        <div class="modulo">
+            <h:graphicImage library="img" name="f1.png" alt="Imagen Módulo 3" class="imagen-modulo"/>
+            <div class="contenido-modulo">
+                <h5 class="titulo-modulo">Gestor de Salones</h5>
+                <p class="texto-modulo">Puedes gestionar la información de salones</p>
+            </div>
+        </div>
+        <div class="modulo">
+            <h:graphicImage library="img" name="f2.png" alt="Imagen Módulo 4" class="imagen-modulo"/>
+            <div class="contenido-modulo">
+                <h5 class="titulo-modulo">
+                    Gestor de Clases
+                </h5>
+                <p class="texto-modulo">Puedes gestionar la información de clases</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="portal-web">
+        <h6>Portal Web 2023</h6>
+    </div>
+    <h:outputScript>
+        <c:if test = "#{not empty flash.exito}" >
+            alertify.success('#{flash.exito}');
+        </c:if>
+
+        //Verificación de sesión
+        <c:if test = "#{not empty sessionScope.rol}" >
+            var rol = "#{sessionScope.rol}";
+            if (rol === 'Maestro') {
+            window.location.href = '../maestro/interfazMaestro.xhtml';
+            } else if (rol === 'Alumno') {
+            window.location.href = '../alumno/interfazAlumno.xhtml';
+            }
+        </c:if>
+        <c:if test = "#{empty sessionScope.rol}" >
+            window.location.href = '../login.xhtml';
+        </c:if>
+    </h:outputScript>
+</h:body>
+
+</html>

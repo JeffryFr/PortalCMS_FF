@@ -1,0 +1,85 @@
+body {
+    background-color: #59797e; /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta de tu imagen */
+    background-size: cover; /* Para cubrir toda la pantalla */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 500px; /* Reduje el ancho del contenedor para centrarlo mejor */
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espacio adicional entre campos */
+}
+
+button {
+    background-color: #044875;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #59797e;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Reduje el espacio entre el icono y el título */
+}
+
+.title-icon {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.cancel {
+    background-color:  #044875; /* Color de fondo para el botón de cancelar */
+    color: #ffffff;
+    margin-left: 10px; /* Espacio entre los botones */
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espacio adicional entre campos */
+}
+
